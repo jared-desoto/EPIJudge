@@ -7,8 +7,15 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def even_odd(A):
-    # TODO - you fill in here.
-    return
+
+    even_iter, odd_iter = 0, len(A) - 1
+    while even_iter <= odd_iter:
+        if A[even_iter] % 2 == 0:
+            even_iter += 1
+        else:
+            A[even_iter], A[odd_iter] = A[odd_iter], A[even_iter]
+            odd_iter -= 1
+    return A
 
 
 @enable_executor_hook
