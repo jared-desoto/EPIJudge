@@ -1,22 +1,28 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-
+# This stack is the most basic implementation. It has O(N) performance on the max function.
+# To improve we can cache some Max data on every push
+# TODO implement better solution with caching
 class Stack:
+    def __init__(self):
+        self.data = []
+
     def empty(self):
-        # TODO - you fill in here.
+        while True:
+            if len(self.data) == 0:
+                break
+            self.data.pop()
         return True
 
     def max(self):
-        # TODO - you fill in here.
-        return 0
+        return max(self.data)
 
     def pop(self):
-        # TODO - you fill in here.
-        return 0
+        return self.data.pop()
 
     def push(self, x):
-        # TODO - you fill in here.
+        self.data.append(x)
         return
 
 
