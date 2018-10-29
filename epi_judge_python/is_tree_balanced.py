@@ -3,27 +3,21 @@ from collections import namedtuple
 
 
 def is_balanced_binary_tree(tree):
-    height_isbalanced = namedtuple('HeightBalanced', ('height', 'isbalanced'))
-
-    def calculateBalance(node):
+    def check_height(node):
         if not node:
-            return height_isbalanced(-1, True)
-
-        left = calculateBalance(node.left)
-        if not left.isbalanced:
-            return height_isbalanced(left.height, left.isbalanced)
-        right = calculateBalance(node.right)
-        if not right.isbalanced:
-            return height_isbalanced(right.height, right.isbalanced)
-
-        max_value = max(left.height, right.height)+1
-        is_balanced = False
-        if abs(right.height - left.height) <= 1:
-            is_balanced = True
-
-        return height_isbalanced(max_value, is_balanced)
-    return calculateBalance(tree).isbalanced
-
+            return 0
+        left_height = check_height(node.left) + 1
+        right_height = check_height(node.right) + 1
+        if left_height == 0 or right_height == 0:
+            return -1
+        if -1 <= left_height - right_height <= 1:
+            return max(left_height, right_height)
+        else:
+            return -1
+    if check_height(tree) != -1:
+        return True
+    else:
+        return False
 
 if __name__ == '__main__':
     exit(
